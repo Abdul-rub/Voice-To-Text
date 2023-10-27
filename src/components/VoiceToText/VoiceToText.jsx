@@ -84,22 +84,70 @@ const languages = [
   { name: 'Yiddish (World)', code: 'yi' },
   { name: 'Yoruba (Nigeria)', code: 'yo-NG' },
   { name: 'Zulu (South Africa)', code: 'zu-ZA' },
+  { name: 'Albanian (Albania)', code: 'sq-AL' },
+  { name: 'Amharic (Ethiopia)', code: 'am-ET' },
+  { name: 'Armenian (Armenia)', code: 'hy-AM' },
+  { name: 'Azerbaijani (Azerbaijan)', code: 'az-AZ' },
+  { name: 'Bosnian (Bosnia and Herzegovina)', code: 'bs-BA' },
+  { name: 'Catalan (Spain)', code: 'ca-ES' },
+  { name: 'Chichewa (Malawi)', code: 'ny-MW' },
+  { name: 'Corsican (France)', code: 'co-FR' },
+  { name: 'Esperanto (World)', code: 'eo' },
+  { name: 'Fijian (Fiji)', code: 'fj-FJ' },
+  { name: 'Filipino (Philippines)', code: 'fil-PH' },
+  { name: 'Frisian (Netherlands)', code: 'fy-NL' },
+  { name: 'Galician (Spain)', code: 'gl-ES' },
+  { name: 'Georgian (Georgia)', code: 'ka-GE' },
+  { name: 'Haitian Creole (Haiti)', code: 'ht-HT' },
+  { name: 'Hausa (Nigeria)', code: 'ha-NG' },
+  { name: 'Hawaiian (United States)', code: 'haw-US' },
+  { name: 'Hmong (Hmong)', code: 'hmn' },
+  { name: 'Igbo (Nigeria)', code: 'ig-NG' },
+  { name: 'Javanese (Indonesia)', code: 'jv-ID' },
+  { name: 'Kazakh (Kazakhstan)', code: 'kk-KZ' },
+  { name: 'Khmer (Cambodia)', code: 'km-KH' },
+  { name: 'Kurdish (Kurdish)', code: 'ku' },
+  { name: 'Kyrgyz (Kyrgyzstan)', code: 'ky-KG' },
+  { name: 'Lao (Laos)', code: 'lo-LA' },
+  { name: 'Luxembourgish (Luxembourg)', code: 'lb-LU' },
+  { name: 'Macedonian (North Macedonia)', code: 'mk-MK' },
+  { name: 'Malagasy (Madagascar)', code: 'mg-MG' },
+  { name: 'Maori (New Zealand)', code: 'mi-NZ' },
+  { name: 'Mongolian (Mongolia)', code: 'mn-MN' },
+  { name: 'Nepali (Nepal)', code: 'ne-NP' },
+  { name: 'Pashto (Afghanistan)', code: 'ps-AF' },
+  { name: 'Samoan (Samoa)', code: 'sm-WS' },
+  { name: 'Scots Gaelic (United Kingdom)', code: 'gd-GB' },
+  { name: 'Sesotho (Lesotho)', code: 'st-LS' },
+  { name: 'Shona (Zimbabwe)', code: 'sn-ZW' },
+  { name: 'Sindhi (Pakistan)', code: 'sd-PK' },
+  { name: 'Sinhala (Sri Lanka)', code: 'si-LK' },
+  { name: 'Somali (Somalia)', code: 'so-SO' },
+  { name: 'Sundanese (Indonesia)', code: 'su-ID' },
+  { name: 'Tajik (Tajikistan)', code: 'tg-TJ' },
+  { name: 'Tatar (Russia)', code: 'tt-RU' },
+  { name: 'Tibetan (Tibet)', code: 'bo-CN' },
+  { name: 'Tigrinya (Eritrea)', code: 'ti-ER' },
+  { name: 'Tonga (Tonga)', code: 'to-TO' },
+  { name: 'Turkmen (Turkmenistan)', code: 'tk-TM' },
+  { name: 'Uzbek (Uzbekistan)', code: 'uz-UZ' },
+  { name: 'Xhosa (South Africa)', code: 'xh-ZA' },
 ];
 
 const VoiceToText = () => {
 
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0].code); 
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[0].code);
   const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
 
   //Start Listening
-  const startListening = () =>{
+  const startListening = () => {
     toast.success("Started Listening")
     SpeechRecognition.startListening({ continuous: true, language: selectedLanguage });
-  } 
+  }
 
   //Stop Listening 
-  const stopListening = () =>{
+  const stopListening = () => {
     toast.error("Stopped Listening ")
     SpeechRecognition.stopListening();
   }
@@ -134,20 +182,20 @@ const VoiceToText = () => {
   return (
     <div className={style.container}>
       <h2>Speech to Text Converter</h2>
-    
 
 
-<div className={style.selectdiv}>
 
-      <h4>Select a language : </h4>
-      <select value={selectedLanguage} onChange={handleLanguageChange}>
-        {languages.map((language) => (
-          <option key={language.code} value={language.code}>
-            {language.name}
-          </option>
-        ))}
-      </select>
-</div>
+      <div className={style.selectdiv}>
+
+        <h4>Select a language : </h4>
+        <select value={selectedLanguage} onChange={handleLanguageChange}>
+          {languages.map((language) => (
+            <option key={language.code} value={language.code}>
+              {language.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className={style.mainContent}>
         {transcript}
